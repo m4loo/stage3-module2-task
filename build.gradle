@@ -20,6 +20,11 @@ subprojects {
 
     dependencies {
         implementation "org.springframework:spring-context:$springVersion"
+        implementation "org.aspectj:aspectjrt:$aspectjVersion"
+        implementation "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
+
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
         testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
@@ -34,7 +39,8 @@ subprojects {
     }
 }
 
-task repack(type: Jar, dependsOn: ':module-main:build') {
+tasks.register('repack', Jar) {
+    dependsOn ':module-main:build'
     if (findProject(':module-main') != null) {
         entryCompression = ZipEntryCompression.STORED
         def buildJar = zipTree("${project(':module-main').buildDir}/libs/module-main.jar")
