@@ -19,11 +19,11 @@ public class Randomizer {
     }
 
     public String getRandomTitle() {
-        return getRandomLineFromFile(Constants.titleFile);
+        return getRandomLineFromFile(Constants.TITLE_FILE);
     }
 
     public String getRandomContent() {
-        return getRandomLineFromFile(Constants.contentFile);
+        return getRandomLineFromFile(Constants.CONTENT_FILE);
     }
 
     @SneakyThrows

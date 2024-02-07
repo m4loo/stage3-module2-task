@@ -23,7 +23,7 @@ public class DataInit {
     @SneakyThrows
     List<AuthorModel> initAuthors() {
         List<AuthorModel> authorModelList = new ArrayList<>();
-        Path path = Path.of(Constants.authorFile);
+        Path path = Path.of(Constants.AUTHOR_FILE);
         List<String> lines = Files.readAllLines(path);
         for (int i = 0; i < lines.size(); i++) {
             listIndexAuthor.add(i);
@@ -43,7 +43,7 @@ public class DataInit {
 
     List<NewsModel> initNews(List<AuthorModel> authorModelList) {
         List<NewsModel> newsModelList = new ArrayList<>();
-        for (int i = 0; i < Constants.totalNumberOfNews; i++) {
+        for (int i = 0; i < Constants.TOTAL_NUMBER_OF_NEWS; i++) {
             listIndexNews.add(i);
             Long newsId = (long) (i + 1);
             String title = randomizer.getRandomTitle();

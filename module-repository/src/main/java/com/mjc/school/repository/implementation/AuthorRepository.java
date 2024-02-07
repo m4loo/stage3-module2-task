@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
 
-    DataSource dataSource = new DataSource();
+    DataSource dataSource;
 
     @Override
     public List<AuthorModel> readAll() {

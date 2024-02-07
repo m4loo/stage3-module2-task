@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
-    DataSource dataSource = new DataSource();
+    DataSource dataSource;
 
     @Override
     public List<NewsModel> readAll() {

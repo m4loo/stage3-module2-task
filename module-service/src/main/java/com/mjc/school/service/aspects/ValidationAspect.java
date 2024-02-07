@@ -27,12 +27,12 @@ public class ValidationAspect {
     }
 
     @Before("@annotation(com.mjc.school.service.annotation.ValidateNewsId) && args(id)")
-    public void checkNewsId(Long id) throws InputExceptions {
+    public void checkNewsId(Long id) {
         validator.checkNewsId(id);
     }
 
     @Before("@annotation(com.mjc.school.service.annotation.ValidateAuthorId) && args(id)")
-    public void checkAuthorId(Long id) throws InputExceptions {
+    public void checkAuthorId(Long id) {
         validator.checkAuthorId(id);
     }
 }
