@@ -4,10 +4,12 @@ import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.service.dto.author.AuthorDTORequest;
 import com.mjc.school.service.dto.author.AuthorDTORespond;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AuthorMapper implements BaseMapper<AuthorDTORespond, AuthorModel, AuthorDTORequest> {
 
     ModelMapper modelMapper = new ModelMapper();

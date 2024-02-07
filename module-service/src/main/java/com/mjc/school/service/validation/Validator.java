@@ -15,25 +15,25 @@ public class Validator {
     private static final int NEWS_CONTENT_MAX = 255;
     private static final int AUTHOR_NAME_MAX = 30;
 
-    public void checkNewsId(Long id) throws InputExceptions {
+    public void checkNewsId(Long id) {
         checkFormat(id, ExceptionService.Constants.NEWS);
         checkId(id, ExceptionService.Constants.NEWS);
     }
 
-    public void checkAuthorId(Long id) throws InputExceptions {
+    public void checkAuthorId(Long id) {
         checkFormat(id, ExceptionService.Constants.AUTHOR);
         checkId(id, ExceptionService.Constants.AUTHOR);
     }
 
-    public void checkTitle(String title) throws InputExceptions {
+    public void checkTitle(String title) {
         checkCharLength(title, ExceptionService.Constants.NEWS, ExceptionService.Constants.TITLE, NEWS_TITLE_MAX);
     }
 
-    public void checkContent(String content) throws InputExceptions {
+    public void checkContent(String content) {
         checkCharLength(content, ExceptionService.Constants.NEWS, ExceptionService.Constants.CONTENT, NEWS_CONTENT_MAX);
     }
 
-    public void checkName(String name) throws InputExceptions {
+    public void checkName(String name) {
         checkCharLength(name, ExceptionService.Constants.AUTHOR, ExceptionService.Constants.NAME, AUTHOR_NAME_MAX);
     }
 

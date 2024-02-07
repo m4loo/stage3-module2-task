@@ -1,6 +1,6 @@
 package com.mjc.school.menu.printers;
 
-import com.mjc.school.controller.Commands.NewsCommandHandler;
+import com.mjc.school.controller.commands.NewsCommandHandler;
 import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.interfaces.BaseMenuPrinter;
 import com.mjc.school.menu.Buttons;

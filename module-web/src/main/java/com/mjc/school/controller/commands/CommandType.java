@@ -1,4 +1,4 @@
-package com.mjc.school.controller.Commands;
+package com.mjc.school.controller.commands;
 
 public enum CommandType {
     READ_ALL,

@@ -4,10 +4,12 @@ import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.dto.news.NewsDTORequest;
 import com.mjc.school.service.dto.news.NewsDTORespond;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class NewsMapper implements BaseMapper<NewsDTORespond, NewsModel, NewsDTORequest>{
 
     ModelMapper modelMapper = new ModelMapper();

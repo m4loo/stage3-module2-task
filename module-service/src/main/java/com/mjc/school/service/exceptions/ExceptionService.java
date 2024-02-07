@@ -9,6 +9,7 @@ public enum ExceptionService {
     ERROR_NOT_EXIST(Constants.ERROR_CODE_XXX31, Constants.ERROR_NOT_EXIST);
 
     private final String errorInfo;
+    private final String target = "{entity}";
 
     ExceptionService(String errorCode, String errorMessage) {
         this.errorInfo = Constants.ERROR_CODE + errorCode + " "
@@ -21,23 +22,26 @@ public enum ExceptionService {
 
     public String getErrorInfo(String entity) {
         return this.errorInfo
-                .replace("{entity}", entity);
+                .replace(target, entity);
     }
 
     public String getErrorInfo(String entity, Long id) {
         return this.errorInfo
-                .replace("{entity}", entity)
+                .replace(target, entity)
                 .replace("{id}", Long.toString(id));
     }
 
     public String getErrorInfo(String entity, String object, int max) {
         return this.errorInfo
-                .replace("{entity}", entity)
+                .replace(target, entity)
                 .replace("{object}", object)
                 .replace("{max}", Integer.toString(max));
     }
 
     public static class Constants {
+
+        private Constants() {}
+
         public static final String ERROR_CODE = "ERROR_CODE:";
         public static final String ERROR_MESSAGE = "ERROR_MESSAGE:";
 

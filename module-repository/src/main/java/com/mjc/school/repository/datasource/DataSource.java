@@ -1,4 +1,4 @@
-package com.mjc.school.repository.dataSource;
+package com.mjc.school.repository.datasource;
 
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.model.NewsModel;

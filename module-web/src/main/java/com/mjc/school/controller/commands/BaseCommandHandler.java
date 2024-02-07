@@ -1,4 +1,4 @@
-package com.mjc.school.controller.Commands;
+package com.mjc.school.controller.commands;
 
 import java.util.List;
 

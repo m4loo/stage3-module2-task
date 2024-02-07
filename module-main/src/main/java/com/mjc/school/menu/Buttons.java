@@ -20,20 +20,21 @@ public enum Buttons {
 
     private final String message;
     private final String buttonMessage;
+    private final String entity = "{entity}";
 
     Buttons(int buttonId, String buttonMessage) {
         if (buttonId >= 1 && buttonId <= 5) {
             this.message = buttonId + " - "
-                    + buttonMessage.replace("{entity}", "news");
-            this.buttonMessage = buttonMessage.replace("{entity}", "news");
+                    + buttonMessage.replace(entity, "news");
+            this.buttonMessage = buttonMessage.replace(entity, "news");
         } else if (buttonId == 6) {
             this.message = buttonId + " - "
-                    + buttonMessage.replace("{entity}", "authors");
-            this.buttonMessage = buttonMessage.replace("{entity}", "authors");
+                    + buttonMessage.replace(entity, "authors");
+            this.buttonMessage = buttonMessage.replace(entity, "authors");
         } else if (buttonId > 6 && buttonId <= 10) {
             this.message = buttonId + " - "
-                    + buttonMessage.replace("{entity}", "author");
-            this.buttonMessage = buttonMessage.replace("{entity}", "author");
+                    + buttonMessage.replace(entity, "author");
+            this.buttonMessage = buttonMessage.replace(entity, "author");
         } else {
             this.message = buttonId + " - " + buttonMessage;
             this.buttonMessage = buttonMessage;
@@ -42,6 +43,9 @@ public enum Buttons {
 
 
     public static final class ConstantsString {
+
+        private ConstantsString() {}
+
         public static final String READ_ALL = "Get all {entity}.";
         public static final String READ_BY_ID = "Get {entity} by id.";
         public static final String CREATE = "Create {entity}.";

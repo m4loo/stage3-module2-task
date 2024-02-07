@@ -1,7 +1,7 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.dataSource.DataSource;
+import com.mjc.school.repository.datasource.DataSource;
 import com.mjc.school.repository.model.NewsModel;
 import org.springframework.stereotype.Repository;
 

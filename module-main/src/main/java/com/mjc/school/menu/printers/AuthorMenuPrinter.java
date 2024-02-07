@@ -1,6 +1,6 @@
 package com.mjc.school.menu.printers;
 
-import com.mjc.school.controller.Commands.AuthorCommandHandler;
+import com.mjc.school.controller.commands.AuthorCommandHandler;
 import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.interfaces.BaseMenuPrinter;
 import com.mjc.school.menu.Buttons;

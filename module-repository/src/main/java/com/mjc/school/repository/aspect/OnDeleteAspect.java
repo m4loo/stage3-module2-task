@@ -1,6 +1,6 @@
 package com.mjc.school.repository.aspect;
 
-import com.mjc.school.repository.dataSource.DataSource;
+import com.mjc.school.repository.datasource.DataSource;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

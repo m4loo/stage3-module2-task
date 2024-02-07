@@ -1,4 +1,4 @@
-package com.mjc.school.repository.dataSource;
+package com.mjc.school.repository.datasource;
 
 import com.mjc.school.repository.constants.Constants;
 import com.mjc.school.repository.model.AuthorModel;
@@ -18,15 +18,12 @@ public class DataInit {
     @Getter
     private final List<Integer> listIndexNews = new ArrayList<>();
 
-    Constants constants = new Constants();
     Randomizer randomizer = new Randomizer();
-
-
 
     @SneakyThrows
     List<AuthorModel> initAuthors() {
         List<AuthorModel> authorModelList = new ArrayList<>();
-        Path path = Path.of(new Constants().getAUTHOR_FILE());
+        Path path = Path.of(Constants.authorFile);
         List<String> lines = Files.readAllLines(path);
         for (int i = 0; i < lines.size(); i++) {
             listIndexAuthor.add(i);
@@ -46,7 +43,7 @@ public class DataInit {
 
     List<NewsModel> initNews(List<AuthorModel> authorModelList) {
         List<NewsModel> newsModelList = new ArrayList<>();
-        for (int i = 0; i < constants.getTOTAL_NUMBER_OF_NEWS(); i++) {
+        for (int i = 0; i < Constants.totalNumberOfNews; i++) {
             listIndexNews.add(i);
             Long newsId = (long) (i + 1);
             String title = randomizer.getRandomTitle();

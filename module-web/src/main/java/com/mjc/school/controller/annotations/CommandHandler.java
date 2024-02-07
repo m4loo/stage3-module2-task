@@ -1,6 +1,6 @@
 package com.mjc.school.controller.annotations;
 
-import com.mjc.school.controller.Commands.CommandType;
+import com.mjc.school.controller.commands.CommandType;
 
 import java.lang.annotation.*;
 

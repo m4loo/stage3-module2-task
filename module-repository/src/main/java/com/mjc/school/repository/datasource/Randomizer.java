@@ -1,4 +1,4 @@
-package com.mjc.school.repository.dataSource;
+package com.mjc.school.repository.datasource;
 
 import com.mjc.school.repository.constants.Constants;
 import com.mjc.school.repository.model.AuthorModel;
@@ -13,18 +13,17 @@ import java.util.Random;
 
 public class Randomizer {
     Random random = new Random();
-    Constants constants = new Constants();
 
     public Long getRandomAuthorId(List<AuthorModel> authorModelList) {
         return (long) random.nextInt(authorModelList.size());
     }
 
     public String getRandomTitle() {
-        return getRandomLineFromFile(constants.getTITLE_FILE());
+        return getRandomLineFromFile(Constants.titleFile);
     }
 
     public String getRandomContent() {
-        return getRandomLineFromFile(constants.getCONTENT_FILE());
+        return getRandomLineFromFile(Constants.contentFile);
     }
 
     @SneakyThrows
