@@ -1,5 +1,6 @@
 package com.mjc.school.service.implementation;
 
+import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.BaseService;
@@ -21,6 +22,7 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
 
     private final NewsRepository newsRepository;
     private final NewsMapper newsMapper;
+    private final AuthorRepository authorRepository;
 
     @Override
     public List<NewsDTORespond> readAll() {
@@ -47,11 +49,21 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
 
     @Override
     public NewsDTORespond create(NewsDTORequest createRequest) {
-        NewsModel newsModel = newsMapper.convertDTOtoModel(createRequest);
-        newsModel.setCreateDate(LocalDateTime.now());
-        newsModel.setLastUpdateDate(LocalDateTime.now());
-        newsRepository.create(newsModel);
-        return newsMapper.convertModelToDTO(newsModel);
+        try {
+            if (authorRepository.existById(createRequest.getAuthorId())) {
+                NewsModel newsModel = newsMapper.convertDTOtoModel(createRequest);
+                newsModel.setCreateDate(LocalDateTime.now());
+                newsModel.setLastUpdateDate(LocalDateTime.now());
+                newsRepository.create(newsModel);
+                return newsMapper.convertModelToDTO(newsModel);
+            } else
+                throw new NotFoundException(ExceptionService.ERROR_NOT_EXIST.getErrorInfo(
+                    ExceptionService.Constants.AUTHOR,
+                        createRequest.getAuthorId()));
+        } catch (NotFoundException e) {
+            System.out.println(e.getErrorMessage());
+        }
+        return null;
     }
 
     @SneakyThrows

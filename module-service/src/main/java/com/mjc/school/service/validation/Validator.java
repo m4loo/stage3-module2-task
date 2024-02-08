@@ -35,31 +35,19 @@ public class Validator {
         checkCharLength(name, ExceptionService.Constants.AUTHOR, ExceptionService.Constants.NAME, AUTHOR_NAME_MAX);
     }
 
-    public void checkFormat(String id, String entity) {
-        try {
+    public void checkFormat(String id, String entity) throws InputExceptions {
             if (!NumberUtils.isParsable(id))
                 throw new InputExceptions(String.format(ExceptionService.ERROR_FORMAT.getErrorInfo(entity)));
-        } catch (InputExceptions e) {
-            System.out.println(e.getErrorMessage());
-        }
     }
 
-    public void checkId(Long id, String entity) {
-        try {
+    public void checkId(Long id, String entity) throws InputExceptions {
             if (id == null || id <= 0)
                 throw new InputExceptions(String.format(ExceptionService.ERROR_ID_LENGTH.getErrorInfo(entity, id)));
-        } catch (InputExceptions e) {
-            System.out.println(e.getErrorMessage());
-        }
     }
 
-    public void checkCharLength(String str, String entity, String object, int max) {
-        try {
+    public void checkCharLength(String str, String entity, String object, int max) throws InputExceptions {
             if (str.length() < CHAR_MIN || str.length() > max)
                 throw new InputExceptions(String.format(ExceptionService.ERROR_CHAR_LENGTH.getErrorInfo(str, entity, object, max)));
-        } catch (InputExceptions e) {
-            System.out.println(e.getErrorMessage());
-        }
     }
 
     public void checkNewsDto(String title, String content, String authorId) throws InputExceptions {

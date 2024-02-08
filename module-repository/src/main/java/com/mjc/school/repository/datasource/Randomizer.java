@@ -15,7 +15,7 @@ public class Randomizer {
     public static final Random random = new Random();
 
     public Long getRandomAuthorId(List<AuthorModel> authorModelList) {
-        return (long) random.nextInt(authorModelList.size());
+        return random.nextLong(authorModelList.size() + 1L);
     }
 
     public String getRandomTitle() {

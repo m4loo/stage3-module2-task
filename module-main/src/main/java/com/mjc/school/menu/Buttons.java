@@ -13,7 +13,7 @@ public enum Buttons {
     READ_ALL_AUTHORS(6, ConstantsString.READ_ALL),
     READ_BY_ID_AUTHORS(7, ConstantsString.READ_BY_ID),
     CREATE_AUTHOR(8, ConstantsString.CREATE),
-    UPDATE_AUTHOR(9, ConstantsString.DELETE_BY_ID),
+    UPDATE_AUTHOR(9, ConstantsString.UPDATE),
     DELETE_BY_ID_AUTHOR(10, ConstantsString.DELETE_BY_ID),
 
     EXIT(0, "Exit.");
