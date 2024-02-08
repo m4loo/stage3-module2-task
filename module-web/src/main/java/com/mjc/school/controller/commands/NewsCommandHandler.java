@@ -2,6 +2,8 @@ package com.mjc.school.controller.commands;
 
 import com.mjc.school.controller.annotations.CommandHandler;
 import com.mjc.school.controller.implementation.NewsController;
+import com.mjc.school.service.annotation.ValidateDto;
+import com.mjc.school.service.annotation.ValidateNewsId;
 import com.mjc.school.service.dto.news.NewsDTORequest;
 import com.mjc.school.service.dto.news.NewsDTORespond;
 import com.mjc.school.service.exceptions.ExceptionService;
@@ -50,11 +52,15 @@ public class NewsCommandHandler implements BaseCommandHandler<NewsController, Ne
         } catch (NotFoundException e) {
             System.out.println(e.getErrorMessage());
         }
-        return null;
+        return "";
     }
 
-    public void createRequest(Long newsId, String title, String content, Long authorId) {
-        newsDTORequest = new NewsDTORequest(newsId, title, content, authorId);
+    @ValidateNewsId
+    @ValidateDto
+    public void createRequest(String newsId, String title, String content, String authorId) {
+        Long authorIdLong = (authorId == null) ? null : Long.parseLong(authorId);
+        Long newsIdLong = (newsId == null) ? null : Long.parseLong(newsId);
+        newsDTORequest = new NewsDTORequest(newsIdLong, title, content, authorIdLong);
     }
 
     @Override
@@ -67,7 +73,7 @@ public class NewsCommandHandler implements BaseCommandHandler<NewsController, Ne
                 + ", lastUpdatedDate=" + newsDTORespond.getLastUpdatedDate()
                 + ", authorId=" + newsDTORespond.getAuthorId()
                 + "]";
-        return null;
+        return "";
     }
 
     @Override

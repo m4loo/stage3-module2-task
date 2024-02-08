@@ -12,7 +12,12 @@ import java.util.List;
 @Component
 public class AuthorMapper implements BaseMapper<AuthorDTORespond, AuthorModel, AuthorDTORequest> {
 
-    ModelMapper modelMapper = new ModelMapper();
+    ModelMapper modelMapper;
+
+    public AuthorMapper() {
+        this.modelMapper = new ModelMapper();
+        this.modelMapper.getConfiguration().setSkipNullEnabled(true);
+    }
 
     @Override
     public AuthorDTORespond convertModelToDTO(AuthorModel authorModel) {

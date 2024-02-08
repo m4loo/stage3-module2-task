@@ -2,6 +2,7 @@ package com.mjc.school.controller.commands;
 
 import com.mjc.school.controller.annotations.CommandHandler;
 import com.mjc.school.controller.implementation.AuthorController;
+import com.mjc.school.service.annotation.ValidateDto;
 import com.mjc.school.service.dto.author.AuthorDTORequest;
 import com.mjc.school.service.dto.author.AuthorDTORespond;
 import com.mjc.school.service.exceptions.ExceptionService;
@@ -37,24 +38,26 @@ public class AuthorCommandHandler implements BaseCommandHandler<AuthorController
         try {
             if (method != null) {
                 return switch (commandType) {
-                    case READ_ALL ->
-                            toString((List<AuthorDTORespond>) method.invoke(controller));
-                    case READ_BY_ID ->
-                            toString((AuthorDTORespond) method.invoke(controller, authorDTORequest.getId()));
-                    case CREATE, UPDATE ->
-                            toString((AuthorDTORespond) method.invoke(controller, authorDTORequest));
-                    case DELETE_BY_ID ->
-                            String.valueOf(method.invoke(controller, authorDTORequest.getId()));
+                    case READ_ALL -> toString((List<AuthorDTORespond>) method.invoke(controller));
+                    case READ_BY_ID -> toString((AuthorDTORespond) method.invoke(controller, authorDTORequest.getId()));
+                    case CREATE, UPDATE -> toString((AuthorDTORespond) method.invoke(controller, authorDTORequest));
+                    case DELETE_BY_ID -> String.valueOf(method.invoke(controller, authorDTORequest.getId()));
                 };
             } else throw new NotFoundException(ExceptionService.ERROR_COMMAND_NOT_FOUND.getErrorInfo());
         } catch (NotFoundException e) {
             System.out.println(e.getErrorMessage());
         }
-        return null;
+        return "";
     }
 
-    public void createRequest(Long id, String name) {
-        authorDTORequest = new AuthorDTORequest(id, name);
+    @ValidateDto
+    public void createRequest(String authorId, String name) {
+        if (authorId == null)
+            authorDTORequest = new AuthorDTORequest(null, name);
+        else {
+            Long id = Long.parseLong(authorId);
+            authorDTORequest = new AuthorDTORequest(id, name);
+        }
     }
 
     @Override

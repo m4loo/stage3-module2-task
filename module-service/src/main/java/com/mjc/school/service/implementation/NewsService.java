@@ -3,8 +3,6 @@ package com.mjc.school.service.implementation;
 import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.annotation.ValidateDto;
-import com.mjc.school.service.annotation.ValidateNewsId;
 import com.mjc.school.service.dto.news.NewsDTORequest;
 import com.mjc.school.service.dto.news.NewsDTORespond;
 import com.mjc.school.service.exceptions.ExceptionService;
@@ -30,7 +28,6 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
     }
 
     @SneakyThrows
-    @ValidateNewsId
     @Override
     public NewsDTORespond readById(Long id) {
         try {
@@ -48,7 +45,6 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
         return null;
     }
 
-    @ValidateDto
     @Override
     public NewsDTORespond create(NewsDTORequest createRequest) {
         NewsModel newsModel = newsMapper.convertDTOtoModel(createRequest);
@@ -59,7 +55,6 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
     }
 
     @SneakyThrows
-    @ValidateDto
     @Override
     public NewsDTORespond update(NewsDTORequest updateRequest) {
         try {
@@ -78,7 +73,6 @@ public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, 
     }
 
     @SneakyThrows
-    @ValidateNewsId
     @Override
     public boolean deleteById(Long id) {
         try {

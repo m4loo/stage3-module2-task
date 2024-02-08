@@ -27,8 +27,8 @@ public class NewsMenuPrinter implements BaseMenuPrinter<NewsController> {
     public void printReadByIdlMenu(NewsController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.READ_BY_ID_NEWS.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_NEWS_ID);
-        Long id = input.nextLong();
-        newsCommandHandler.createRequest(id, null, null, null);
+        String newsId = input.nextLine();
+        newsCommandHandler.createRequest(newsId, null, null, null);
         out.println(newsCommandHandler.handleCommand(controller, Buttons.READ_BY_ID_NEWS.name()));
     }
 
@@ -40,7 +40,7 @@ public class NewsMenuPrinter implements BaseMenuPrinter<NewsController> {
         out.println(Buttons.ConstantsString.ENTER_NEWS_CONTENT);
         String content = input.nextLine();
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_ID);
-        Long authorId = input.nextLong();
+        String authorId = input.nextLine();
         newsCommandHandler.createRequest(null, title, content, authorId);
         out.println(newsCommandHandler.handleCommand(controller, Buttons.CREATE_NEWS.name()));
     }
@@ -49,13 +49,13 @@ public class NewsMenuPrinter implements BaseMenuPrinter<NewsController> {
     public void printUpdateMenu(NewsController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.UPDATE_NEWS.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_NEWS_ID);
-        Long newsId = input.nextLong();
+        String newsId = input.nextLine();
         out.println(Buttons.ConstantsString.ENTER_NEWS_TITLE);
         String title = input.nextLine();
         out.println(Buttons.ConstantsString.ENTER_NEWS_CONTENT);
         String content = input.nextLine();
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_ID);
-        Long authorId = input.nextLong();
+        String authorId = input.nextLine();
         newsCommandHandler.createRequest(newsId, title, content, authorId);
         out.println(newsCommandHandler.handleCommand(controller, Buttons.UPDATE_NEWS.name()));
     }
@@ -64,7 +64,7 @@ public class NewsMenuPrinter implements BaseMenuPrinter<NewsController> {
     public void printDeleteByIdMenu(NewsController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.DELETE_BY_ID_NEWS.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_NEWS_ID);
-        newsCommandHandler.createRequest(input.nextLong(), null, null, null);
+        newsCommandHandler.createRequest(input.nextLine(), null, null, null);
         out.println(newsCommandHandler.handleCommand(controller, Buttons.DELETE_BY_ID_NEWS.name()));
     }
 

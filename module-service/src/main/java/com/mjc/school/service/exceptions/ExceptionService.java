@@ -31,11 +31,12 @@ public enum ExceptionService {
                 .replace("{id}", Long.toString(id));
     }
 
-    public String getErrorInfo(String entity, String object, int max) {
+    public String getErrorInfo(String str, String entity, String object, int max) {
         return this.errorInfo
                 .replace(target, entity)
                 .replace("{object}", object)
-                .replace("{max}", Integer.toString(max));
+                .replace("{max}", Integer.toString(max))
+                .replace("{str}", str);
     }
 
     public static class Constants {
@@ -48,7 +49,7 @@ public enum ExceptionService {
         public static final String ERROR_COMMAND_NOT_FOUND = "Command not found.";
 
         public static final String ERROR_ID_LENGTH = "{entity} id can not be null or less than 1. News id is: {id}";
-        public static final String ERROR_CHAR_LENGTH = "{entity} title can not be less than 5 and more than {max} symbols. {entity} {object} is: {srt}";
+        public static final String ERROR_CHAR_LENGTH = "{entity} {object} can not be less than 5 and more than {max} symbols. {entity} {object} is: {str}";
         public static final String ERROR_FORMAT = "{entity} id should be number";
         public static final String ERROR_NOT_EXIST = "{entity} with id {id} does not exist.";
 

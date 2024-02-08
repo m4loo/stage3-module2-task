@@ -1,7 +1,5 @@
 package com.mjc.school.service.validation;
 
-import com.mjc.school.service.dto.author.AuthorDTORequest;
-import com.mjc.school.service.dto.news.NewsDTORequest;
 import com.mjc.school.service.exceptions.ExceptionService;
 import com.mjc.school.service.exceptions.InputExceptions;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -15,38 +13,38 @@ public class Validator {
     private static final int NEWS_CONTENT_MAX = 255;
     private static final int AUTHOR_NAME_MAX = 30;
 
-    public void checkNewsId(Long id) {
-        checkFormat(id, ExceptionService.Constants.NEWS);
-        checkId(id, ExceptionService.Constants.NEWS);
+    public void checkNewsId(String newsId) throws InputExceptions {
+        checkFormat(newsId, ExceptionService.Constants.NEWS);
+        checkId(Long.parseLong(newsId), ExceptionService.Constants.NEWS);
     }
 
-    public void checkAuthorId(Long id) {
-        checkFormat(id, ExceptionService.Constants.AUTHOR);
-        checkId(id, ExceptionService.Constants.AUTHOR);
+    public void checkAuthorId(String authorId) throws InputExceptions {
+        checkFormat(authorId, ExceptionService.Constants.AUTHOR);
+        checkId(Long.parseLong(authorId), ExceptionService.Constants.AUTHOR);
     }
 
-    public void checkTitle(String title) {
+    public void checkTitle(String title) throws InputExceptions {
         checkCharLength(title, ExceptionService.Constants.NEWS, ExceptionService.Constants.TITLE, NEWS_TITLE_MAX);
     }
 
-    public void checkContent(String content) {
+    public void checkContent(String content) throws InputExceptions {
         checkCharLength(content, ExceptionService.Constants.NEWS, ExceptionService.Constants.CONTENT, NEWS_CONTENT_MAX);
     }
 
-    public void checkName(String name) {
+    public void checkName(String name) throws InputExceptions {
         checkCharLength(name, ExceptionService.Constants.AUTHOR, ExceptionService.Constants.NAME, AUTHOR_NAME_MAX);
     }
 
-    public void checkFormat(Long id, String entity){
+    public void checkFormat(String id, String entity) {
         try {
-            if (!NumberUtils.isParsable(Long.toString(id)))
+            if (!NumberUtils.isParsable(id))
                 throw new InputExceptions(String.format(ExceptionService.ERROR_FORMAT.getErrorInfo(entity)));
         } catch (InputExceptions e) {
             System.out.println(e.getErrorMessage());
         }
     }
 
-    public void checkId(Long id, String entity){
+    public void checkId(Long id, String entity) {
         try {
             if (id == null || id <= 0)
                 throw new InputExceptions(String.format(ExceptionService.ERROR_ID_LENGTH.getErrorInfo(entity, id)));
@@ -55,23 +53,23 @@ public class Validator {
         }
     }
 
-    public void checkCharLength(String str, String object, String entity, int max) {
+    public void checkCharLength(String str, String entity, String object, int max) {
         try {
             if (str.length() < CHAR_MIN || str.length() > max)
-                throw new InputExceptions(String.format(ExceptionService.ERROR_CHAR_LENGTH.getErrorInfo(entity, object, max)));
+                throw new InputExceptions(String.format(ExceptionService.ERROR_CHAR_LENGTH.getErrorInfo(str, entity, object, max)));
         } catch (InputExceptions e) {
             System.out.println(e.getErrorMessage());
         }
     }
 
-    public void checkNewsDto(NewsDTORequest newsDTORequest) throws InputExceptions {
-        checkTitle(newsDTORequest.getTitle());
-        checkContent(newsDTORequest.getContent());
-        checkAuthorId(newsDTORequest.getAuthorId());
+    public void checkNewsDto(String title, String content, String authorId) throws InputExceptions {
+        if (title != null) checkTitle(title);
+        if (content != null) checkContent(content);
+        if (authorId != null) checkAuthorId(authorId);
     }
 
-    public void checkAuthorDto(AuthorDTORequest authorDTORequest) throws InputExceptions {
-        checkAuthorId(authorDTORequest.getId());
-        checkName(authorDTORequest.getName());
+    public void checkAuthorDto(String authorId, String name) throws InputExceptions {
+        if (authorId != null) checkAuthorId(authorId);
+        if (name != null) checkName(name);
     }
 }

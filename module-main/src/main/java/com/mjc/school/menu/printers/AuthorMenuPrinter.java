@@ -27,7 +27,7 @@ public class AuthorMenuPrinter implements BaseMenuPrinter<AuthorController> {
     public void printReadByIdlMenu(AuthorController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.READ_BY_ID_AUTHORS.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_ID);
-        authorCommandHandler.createRequest(input.nextLong(), null);
+        authorCommandHandler.createRequest(input.nextLine(), null);
         out.println(authorCommandHandler.handleCommand(controller, Buttons.READ_BY_ID_AUTHORS.name()));
     }
 
@@ -43,7 +43,7 @@ public class AuthorMenuPrinter implements BaseMenuPrinter<AuthorController> {
     public void printUpdateMenu(AuthorController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.UPDATE_AUTHOR.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_ID);
-        Long authorId = input.nextLong();
+        String authorId = input.nextLine();
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_NAME);
         String name = input.nextLine();
         authorCommandHandler.createRequest(authorId, name);
@@ -54,7 +54,7 @@ public class AuthorMenuPrinter implements BaseMenuPrinter<AuthorController> {
     public void printDeleteByIdMenu(AuthorController controller, Scanner input) {
         out.println(Buttons.ConstantsString.OPERATIONS + Buttons.DELETE_BY_ID_AUTHOR.getButtonMessage());
         out.println(Buttons.ConstantsString.ENTER_AUTHOR_ID);
-        authorCommandHandler.createRequest(input.nextLong(), null);
+        authorCommandHandler.createRequest(input.nextLine(), null);
         out.println(authorCommandHandler.handleCommand(controller, Buttons.DELETE_BY_ID_AUTHOR.name()));
     }
 

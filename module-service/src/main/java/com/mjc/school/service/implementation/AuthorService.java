@@ -3,8 +3,6 @@ package com.mjc.school.service.implementation;
 import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.annotation.ValidateAuthorId;
-import com.mjc.school.service.annotation.ValidateDto;
 import com.mjc.school.service.dto.author.AuthorDTORequest;
 import com.mjc.school.service.dto.author.AuthorDTORespond;
 import com.mjc.school.service.exceptions.ExceptionService;
@@ -29,7 +27,6 @@ public class AuthorService implements BaseService<AuthorDTORequest, AuthorDTORes
     }
 
     @SneakyThrows
-    @ValidateAuthorId
     @Override
     public AuthorDTORespond readById(Long id) {
         try {
@@ -48,7 +45,7 @@ public class AuthorService implements BaseService<AuthorDTORequest, AuthorDTORes
         return null;
     }
 
-    @ValidateDto
+
     @Override
     public AuthorDTORespond create(AuthorDTORequest createRequest) {
         AuthorModel authorModel = authorMapper.convertDTOtoModel(createRequest);
@@ -57,7 +54,6 @@ public class AuthorService implements BaseService<AuthorDTORequest, AuthorDTORes
     }
 
     @SneakyThrows
-    @ValidateDto
     @Override
     public AuthorDTORespond update(AuthorDTORequest updateRequest) {
         try {
@@ -76,7 +72,6 @@ public class AuthorService implements BaseService<AuthorDTORequest, AuthorDTORes
     }
 
     @SneakyThrows
-    @ValidateAuthorId
     @Override
     public boolean deleteById(Long id) {
         try {
