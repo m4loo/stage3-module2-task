@@ -19,16 +19,18 @@ public class DataInit {
 
     private final List<Integer> listIndexAuthor = new ArrayList<>();
     private final List<Integer> listIndexNews = new ArrayList<>();
+    private List<AuthorModel> authorModelList;
+    private List<NewsModel> newsModelList;
 
     private static final Randomizer randomizer = new Randomizer();
 
-    public DataInit getNew() {
-        return new DataInit();
+    public DataInit() {
+        initNews(initAuthors());
     }
 
     @SneakyThrows
-    List<AuthorModel> initAuthors() {
-        List<AuthorModel> authorModelList = new ArrayList<>();
+    private List<AuthorModel> initAuthors() {
+        authorModelList = new ArrayList<>();
         Path path = Path.of(Constants.AUTHOR_FILE);
         List<String> lines = Files.readAllLines(path);
         for (int i = 0; i < lines.size(); i++) {
@@ -47,8 +49,8 @@ public class DataInit {
         return authorModelList;
     }
 
-    List<NewsModel> initNews(List<AuthorModel> authorModelList) {
-        List<NewsModel> newsModelList = new ArrayList<>();
+    private void initNews(List<AuthorModel> authorModelList) {
+        newsModelList = new ArrayList<>();
         for (int i = 0; i < Constants.TOTAL_NUMBER_OF_NEWS; i++) {
             listIndexNews.add(i);
             Long newsId = (long) (i + 1);
@@ -66,6 +68,5 @@ public class DataInit {
                             lastUpdateDate,
                             authorId));
         }
-        return newsModelList;
     }
 }
