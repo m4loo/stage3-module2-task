@@ -24,9 +24,9 @@ public class DataSource {
     }
 
     private void init() {
-        authorModelList = dataInit.initAuthors();
-        newsModelList = dataInit.initNews(authorModelList);
-        listIndexAuthor = dataInit.getListIndexAuthor();
-        listIndexNews = dataInit.getListIndexNews();
+        this.authorModelList = dataInit.initAuthors();
+        this.newsModelList = dataInit.initNews(authorModelList);
+        this.listIndexAuthor = dataInit.getListIndexAuthor();
+        this.listIndexNews = dataInit.getListIndexNews();
     }
 }
