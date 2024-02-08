@@ -8,16 +8,20 @@ import com.mjc.school.controller.commands.CommandType;
 import com.mjc.school.service.dto.author.AuthorDTORequest;
 import com.mjc.school.service.dto.author.AuthorDTORespond;
 import com.mjc.school.service.implementation.AuthorService;
-import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
 @Controller
-@NoArgsConstructor(force = true)
 public class AuthorController implements BaseController<AuthorDTORequest, AuthorDTORespond, Long> {
 
-    private final AuthorService authorService = new AuthorService();
+    private final AuthorService authorService;
+
+    @Autowired
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @CommandHandler(value = CommandType.READ_ALL)
     @Override

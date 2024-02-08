@@ -4,6 +4,7 @@ import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.menu.printers.AuthorMenuPrinter;
 import com.mjc.school.menu.printers.NewsMenuPrinter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -16,8 +17,14 @@ public class MenuHelper {
     NewsMenuPrinter newsMenuPrinter = new NewsMenuPrinter();
     AuthorMenuPrinter authorMenuPrinter = new AuthorMenuPrinter();
 
-    NewsController newsController = new NewsController();
-    AuthorController authorController = new AuthorController();
+    private final NewsController newsController;
+    private final AuthorController authorController;
+
+    @Autowired
+    public MenuHelper(NewsController newsController, AuthorController authorController) {
+        this.authorController = authorController;
+        this.newsController = newsController;
+    }
 
     public void printMainMenu() {
         while (true) {

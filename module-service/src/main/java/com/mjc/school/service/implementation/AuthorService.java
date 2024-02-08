@@ -11,6 +11,7 @@ import com.mjc.school.service.exceptions.ExceptionService;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.mapper.AuthorMapper;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +19,13 @@ import java.util.List;
 @Service
 public class AuthorService implements BaseService<AuthorDTORequest, AuthorDTORespond, Long> {
 
-    AuthorRepository authorRepository = new AuthorRepository();
+    private final AuthorRepository authorRepository;
     AuthorMapper authorMapper = new AuthorMapper();
+
+    @Autowired
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public List<AuthorDTORespond> readAll() {
