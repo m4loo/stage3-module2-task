@@ -4,14 +4,18 @@ import com.mjc.school.controller.commands.NewsCommandHandler;
 import com.mjc.school.controller.implementation.NewsController;
 import com.mjc.school.interfaces.BaseMenuPrinter;
 import com.mjc.school.menu.Buttons;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
+@Component
+@RequiredArgsConstructor
 public class NewsMenuPrinter implements BaseMenuPrinter<NewsController> {
 
-    NewsCommandHandler newsCommandHandler = new NewsCommandHandler();
+    private final NewsCommandHandler newsCommandHandler;
 
     @Override
     public void printReadAllMenu(NewsController controller) {

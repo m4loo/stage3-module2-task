@@ -32,8 +32,9 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
 
     @Override
     public AuthorModel create(AuthorModel authorModel) {
-        authorModel.setId(dataSource.getListIndexAuthor().size() + 1L);
-        dataSource.getListIndexAuthor().add(dataSource.getListIndexAuthor().size());
+        List<Integer> listIndexAuthors = dataSource.getListIndexAuthor();
+        authorModel.setId(listIndexAuthors.size() + 1L);
+        dataSource.getListIndexAuthor().add(listIndexAuthors.size());
         authorModel.setCreateDate(LocalDateTime.now());
         authorModel.setLastUpdateDate(LocalDateTime.now());
         readAll().add(authorModel);

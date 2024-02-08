@@ -31,8 +31,9 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
 
     @Override
     public NewsModel create(NewsModel newsModel) {
-        newsModel.setId(dataSource.getListIndexNews().size() + 1L);
-        dataSource.getListIndexNews().add(dataSource.getListIndexNews().size());
+        List<Integer> listIndexNews = dataSource.getListIndexNews();
+        newsModel.setId(listIndexNews.size() + 1L);
+        dataSource.getListIndexNews().add(listIndexNews.size());
         newsModel.setCreateDate(LocalDateTime.now());
         newsModel.setLastUpdateDate(LocalDateTime.now());
         readAll().add(newsModel);

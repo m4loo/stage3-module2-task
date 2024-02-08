@@ -54,7 +54,7 @@ public class AuthorCommandHandler implements BaseCommandHandler<AuthorController
     }
 
     public void createRequest(Long id, String name) {
-        this.authorDTORequest = new AuthorDTORequest(id, name);
+        authorDTORequest = new AuthorDTORequest(id, name);
     }
 
     @Override

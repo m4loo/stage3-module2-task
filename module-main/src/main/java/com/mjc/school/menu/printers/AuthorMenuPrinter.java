@@ -4,14 +4,18 @@ import com.mjc.school.controller.commands.AuthorCommandHandler;
 import com.mjc.school.controller.implementation.AuthorController;
 import com.mjc.school.interfaces.BaseMenuPrinter;
 import com.mjc.school.menu.Buttons;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
+@Component
+@RequiredArgsConstructor
 public class AuthorMenuPrinter implements BaseMenuPrinter<AuthorController> {
 
-    AuthorCommandHandler authorCommandHandler = new AuthorCommandHandler();
+    private final AuthorCommandHandler authorCommandHandler;
 
     @Override
     public void printReadAllMenu(AuthorController controller) {
