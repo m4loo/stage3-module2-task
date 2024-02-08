@@ -4,7 +4,7 @@ import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.annotation.OnDelete;
 import com.mjc.school.repository.datasource.DataSource;
 import com.mjc.school.repository.model.AuthorModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -12,14 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
 
     private final DataSource dataSource;
-
-    @Autowired
-    public AuthorRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     @Override
     public List<AuthorModel> readAll() {

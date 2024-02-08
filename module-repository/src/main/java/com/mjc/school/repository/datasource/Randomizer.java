@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Randomizer {
-    Random random = new Random();
+    public static final Random random = new Random();
 
     public Long getRandomAuthorId(List<AuthorModel> authorModelList) {
         return (long) random.nextInt(authorModelList.size());

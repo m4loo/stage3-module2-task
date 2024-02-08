@@ -10,23 +10,19 @@ import com.mjc.school.service.dto.news.NewsDTORespond;
 import com.mjc.school.service.exceptions.ExceptionService;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.mapper.NewsMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class NewsService implements BaseService<NewsDTORequest, NewsDTORespond, Long> {
 
     private final NewsRepository newsRepository;
-    NewsMapper newsMapper = new NewsMapper();
-
-    @Autowired
-    public NewsService(NewsRepository newsRepository) {
-        this.newsRepository = newsRepository;
-    }
+    private final NewsMapper newsMapper;
 
     @Override
     public List<NewsDTORespond> readAll() {

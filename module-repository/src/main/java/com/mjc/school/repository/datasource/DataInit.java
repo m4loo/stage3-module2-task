@@ -5,6 +5,7 @@ import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.model.NewsModel;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,13 +13,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Component
 public class DataInit {
-    @Getter
+
     private final List<Integer> listIndexAuthor = new ArrayList<>();
-    @Getter
     private final List<Integer> listIndexNews = new ArrayList<>();
 
-    Randomizer randomizer = new Randomizer();
+    private static final Randomizer randomizer = new Randomizer();
+
+    public DataInit getNew() {
+        return new DataInit();
+    }
 
     @SneakyThrows
     List<AuthorModel> initAuthors() {
