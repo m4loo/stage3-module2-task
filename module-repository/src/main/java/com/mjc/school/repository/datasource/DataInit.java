@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,9 @@ public class DataInit {
     @SneakyThrows
     private List<AuthorModel> initAuthors() {
         authorModelList = new ArrayList<>();
-        Path path = Path.of(Constants.AUTHOR_FILE);
-        List<String> lines = Files.readAllLines(path);
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.AUTHOR_FILE);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        List<String> lines = bufferedReader.lines().toList();
         for (int i = 0; i < lines.size(); i++) {
             listIndexAuthor.add(i);
             Long authorId = (long) (i + 1);

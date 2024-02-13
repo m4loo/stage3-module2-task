@@ -4,8 +4,10 @@ import com.mjc.school.repository.constants.Constants;
 import com.mjc.school.repository.model.AuthorModel;
 import lombok.SneakyThrows;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.List;
@@ -28,8 +30,9 @@ public class Randomizer {
 
     @SneakyThrows
     public String getRandomLineFromFile(String fileName){
-        Path path = Path.of(fileName);
-        List<String> list = Files.readAllLines(path);
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        List<String> list = bufferedReader.lines().toList();
         int randomIndex = random.nextInt(list.size());
         return list.get(randomIndex);
     }
