@@ -30,8 +30,8 @@ public class Randomizer {
 
     @SneakyThrows
     public String getRandomLineFromFile(String fileName){
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         List<String> list = bufferedReader.lines().toList();
         int randomIndex = random.nextInt(list.size());
         return list.get(randomIndex);

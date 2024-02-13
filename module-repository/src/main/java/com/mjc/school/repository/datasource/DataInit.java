@@ -33,8 +33,8 @@ public class DataInit {
     @SneakyThrows
     private List<AuthorModel> initAuthors() {
         authorModelList = new ArrayList<>();
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.AUTHOR_FILE);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.AUTHOR_FILE);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         List<String> lines = bufferedReader.lines().toList();
         for (int i = 0; i < lines.size(); i++) {
             listIndexAuthor.add(i);
